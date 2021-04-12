@@ -95,6 +95,17 @@ public class ServicioCatalogoMock implements IServicioCatalogoMockRemote,IServic
             Logger.getLogger(ServicioCatalogoMock.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**
+     * Se elimina un mueble del sistema dado su identificador único
+     * @param id Identificador único del mueble
+     */
+    @Override
+    public Mueble buscarMueble(long id)
+    {
+        Mueble m=(Mueble) persistencia.findById(Mueble.class, id);
+        return m;
+    }
 
     /**
      * Remueve un ejemplar del mueble (no el mueble)

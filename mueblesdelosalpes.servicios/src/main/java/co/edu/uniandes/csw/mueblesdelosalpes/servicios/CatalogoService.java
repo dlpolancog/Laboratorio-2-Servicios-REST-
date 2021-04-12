@@ -16,6 +16,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
  
@@ -30,6 +31,9 @@ public class CatalogoService {
      */
     @EJB
     private IServicioCatalogoMockLocal catalogoEjb;
+    
+    @EJB
+    private IServicioCarritoMockRemote servicioRemoteEjb;
    
  
     /**
@@ -40,8 +44,29 @@ public class CatalogoService {
     @GET
     @Path("muebles/")
     public List<Mueble> getTodosLosMuebles() {
-        return catalogoEjb.darMuebles();
+        return servicioRemoteEjb.getInventario();
  
     }
+    
+    @GET
+    @Path("total-inventario/")
+    public double getPrecioTotalInventario() {
+        return servicioRemoteEjb.getPrecioTotalInventario();
+ 
+    }
+    
+    @POST
+    @Path("agregar-mueble/")
+    public Mueble agregarCatalogo(Mueble mb) {
+        servicioRemoteEjb.agregarItem(mb);
+        return mb;
+    }
+    
+    @GET
+    @Path("buscar-mueble/{id}")
+    public Mueble buscarMueble(@PathParam("id") long mb) {
+        return catalogoEjb.buscarMueble(mb);
+    }
+    
  
 }
