@@ -44,7 +44,7 @@ public class CatalogoService {
     @GET
     @Path("muebles/")
     public List<Mueble> getTodosLosMuebles() {
-        return servicioRemoteEjb.getInventario();
+        return catalogoEjb.darMuebles();
  
     }
     
@@ -64,8 +64,8 @@ public class CatalogoService {
     
     @GET
     @Path("buscar-mueble/{id}")
-    public Mueble buscarMueble(@PathParam("id") long mb) {
-        return catalogoEjb.buscarMueble(mb);
+    public Mueble buscarMueble(@PathParam("id") int id) {
+        return catalogoEjb.buscarMueble((long) id);
     }
     
  

@@ -7,14 +7,14 @@ package co.edu.uniandes.csw.mueblesdelosalpes.logica.interfaces;
 
 import co.edu.uniandes.csw.mueblesdelosalpes.dto.Oferta;
 import java.util.ArrayList;
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author dlpol
  */
-@Local
-public interface IServicioOfertaMockLocal {
+@Remote
+public interface IServicioOfertaMockRemote {
 
     /**
      * Devuelve historial de ofertas registradas.
