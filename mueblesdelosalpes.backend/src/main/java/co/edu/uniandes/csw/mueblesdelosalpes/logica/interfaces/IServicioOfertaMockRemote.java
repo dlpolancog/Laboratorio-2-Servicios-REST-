@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.mueblesdelosalpes.logica.interfaces;
 
 import co.edu.uniandes.csw.mueblesdelosalpes.dto.Oferta;
 import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -17,17 +18,28 @@ import javax.ejb.Remote;
 public interface IServicioOfertaMockRemote {
 
     /**
-     * Devuelve historial de ofertas registradas.
-     *
-     * @return listado de ofertas registradas.
+     * Agrega una oferta al sistema
+     * @param oferta Nueva oferta
      */
-    public ArrayList<Oferta> getOfertas();
+    public void agregarOferta(Oferta oferta);
 
     /**
-     * Agrega una nueva oferta de un mueble
-     *
-     * @param oferta Referencia a una nuevva oferta
+     * Elimina una oferta del sistema
+     * @param id Identificador único de la oferta a eliminar
      */
-    public void agregarOfertas(Oferta oferta);
+    public void eliminarOferta(long id);
+
+    /**
+     * Devuelve todas las ofertas del sistema
+     * @return ofertas Lista de ofertas
+     */
+    public List<Oferta> darOfertas();
+
+    /**
+     * Buscar el mueble por id
+     * @param id Identificador único de la oferta
+     */
+    
+    public Oferta buscarOferta(long id);
 
 }

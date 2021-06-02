@@ -68,5 +68,6 @@ public class CatalogoService {
         return catalogoEjb.buscarMueble((long) id);
     }
     
+    
  
 }

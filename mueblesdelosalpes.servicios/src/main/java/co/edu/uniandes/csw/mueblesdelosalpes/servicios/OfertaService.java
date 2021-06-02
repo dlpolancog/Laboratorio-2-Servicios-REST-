@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 /**
@@ -35,13 +36,21 @@ public class OfertaService {
     
     @GET
     @Path("ofertas/")
-    public List<Oferta> getOfertas() {
-        return ofertaEjb.getOfertas();
+    public List<Oferta> getTodasLasOfertas() {
+        return ofertaEjb.darOfertas();
+ 
     }
-
+    
     @POST
-    @Path("agregar/")
-    public void agregarOfertas(Oferta oferta) {
-        ofertaEjb.agregarOfertas(oferta);
+    @Path("agregar-oferta/")
+    public void agregarOferta(Oferta of) {
+        ofertaEjb.agregarOferta(of);
     }
+    
+    @GET
+    @Path("buscar-oferta/{id}")
+    public Oferta buscarOferta(@PathParam("id") int id) {
+        return ofertaEjb.buscarOferta((long) id);
+    }
+    
 }

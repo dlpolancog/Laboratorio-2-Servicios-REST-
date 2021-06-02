@@ -15,6 +15,7 @@ package co.edu.uniandes.csw.mueblesdelosalpes.persistencia.mock;
 
 import co.edu.uniandes.csw.mueblesdelosalpes.dto.ExperienciaVendedor;
 import co.edu.uniandes.csw.mueblesdelosalpes.dto.Mueble;
+import co.edu.uniandes.csw.mueblesdelosalpes.dto.Oferta;
 import co.edu.uniandes.csw.mueblesdelosalpes.dto.RegistroVenta;
 import co.edu.uniandes.csw.mueblesdelosalpes.dto.TipoMueble;
 import co.edu.uniandes.csw.mueblesdelosalpes.dto.TipoUsuario;
@@ -60,6 +61,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      * Lista con los registros de ventas
      */
     private static ArrayList<RegistroVenta> registrosVentas;
+    
+    /**
+     * Lista con los registros de ventas
+     */
+    private static ArrayList<Oferta> ofertas;
 
     //-----------------------------------------------------------
     // Constructor
@@ -165,6 +171,14 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             registrosVentas.add((RegistroVenta) obj);
         }
+        
+        else if (obj instanceof Oferta)
+        {
+
+            Oferta o = (Oferta) obj;
+            o.setIdOferta(ofertas.size() + 1);
+            ofertas.add(o);
+        }
     }
 
     /**
@@ -215,6 +229,20 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 if (usuario.getLogin().equals(editar.getLogin()))
                 {
                     usuarios.set(i, editar);
+                    break;
+                }
+            }
+        }
+        else if (obj instanceof Oferta)
+        {
+            Oferta editar = (Oferta) obj;
+            Oferta oferta;
+            for (int i = 0; i < ofertas.size(); i++)
+            {
+                oferta = ofertas.get(i);
+                if (oferta.getIdOferta() == editar.getIdOferta())
+                {
+                    ofertas.set(i, editar);
                     break;
                 }
             }
@@ -284,6 +312,22 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 }
             }
         }
+        else if (obj instanceof Oferta)
+        {
+            Oferta oferta;
+            Oferta eliminar = (Oferta) obj;
+            for (int i = 0; i < ofertas.size(); i++)
+            {
+                oferta = ofertas.get(i);
+                if (eliminar.getIdOferta()== oferta.getIdOferta())
+                {
+                    ofertas.remove(i);
+                    break;
+                }
+
+            }
+
+        }
     }
 
     /**
@@ -309,6 +353,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         else if (c.equals(RegistroVenta.class))
         {
             return registrosVentas;
+        } 
+        else if (c.equals(Oferta.class))
+        {
+            return ofertas;
         } 
         else
         {
@@ -358,6 +406,17 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 }
             }
         }
+        else if (c.equals(Usuario.class))
+        {
+            for (Object o : findAll(c))
+            {
+                Oferta of = (Oferta) o;
+                if (Long.parseLong(id.toString())== of.getIdOferta())
+                {
+                    return of;
+                }
+            }
+        } 
         return null;
     }
 }

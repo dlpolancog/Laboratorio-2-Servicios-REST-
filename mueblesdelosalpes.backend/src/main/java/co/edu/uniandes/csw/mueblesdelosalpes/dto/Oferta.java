@@ -30,8 +30,8 @@ public class Oferta {
         return idOferta;
     }
 
-    public void setIdOferta(long id) {
-        this.idOferta = id;
+    public void setIdOferta(long idOferta) {
+        this.idOferta = idOferta;
     }
 
     public String getLoginUsuarioOfertante() {

@@ -51,4 +51,6 @@ public interface IServicioCatalogoMockRemote
      */
     public void removerEjemplarMueble(long id);
     
+    public Mueble buscarMueble(long id);
+    
 }

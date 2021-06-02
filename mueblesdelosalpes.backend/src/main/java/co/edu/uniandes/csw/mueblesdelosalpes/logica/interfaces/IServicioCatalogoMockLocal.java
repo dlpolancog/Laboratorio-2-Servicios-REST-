@@ -53,6 +53,7 @@ public interface IServicioCatalogoMockLocal
      * Remueve un ejemplar del mueble (no el mueble)
      * @param id Identificador único del mueble
      */
+    
     public Mueble buscarMueble(long id);
 
 }
